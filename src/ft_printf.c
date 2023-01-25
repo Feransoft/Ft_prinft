@@ -6,7 +6,7 @@
 /*   By: frueda-m <frueda-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 01:42:41 by frueda-m          #+#    #+#             */
-/*   Updated: 2022/12/31 20:07:24 by frueda-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:13:42 by frueda-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	ft_printf(const char *str, ...)
 	va_list	args;
 	int		print_length;
 
+	if (write(1, "", 0) == -1)
+		return (-1);
 	i = 0;
 	print_length = 0;
 	va_start(args, str);
