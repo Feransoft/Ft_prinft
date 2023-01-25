@@ -6,13 +6,14 @@
 #    By: frueda-m <frueda-m@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/31 15:48:20 by frueda-m          #+#    #+#              #
-#    Updated: 2022/12/31 19:51:23 by frueda-m         ###   ########.fr        #
+#    Updated: 2023/01/25 23:25:19 by frueda-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 
 NAME 		=	libftprintf.a
+BIN			=	bin
 INCLUDE 	=	include
 LIBFT		=	libft
 SRC_DIR		=	src/
@@ -46,13 +47,15 @@ OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 OBJF		=	.cache_exists
 
+
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
-			@mv libft.a $(NAME)
-			@$(AR) $(NAME) $(OBJ)
+			@mkdir -p $(BIN)
+			@mv libft.a $(BIN)/$(NAME)
+			@$(AR) $(BIN)/$(NAME) $(OBJ)
 			@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
@@ -68,7 +71,7 @@ clean:
 			@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
-			@$(RM) -f $(NAME)
+			@$(RM) -rf $(BIN)
 			@$(RM) -f $(LIBFT)/libft.a
 			@echo "$(CYAN)ft_printf executable files cleaned!$(DEF_COLOR)"
 			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
